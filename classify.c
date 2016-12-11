@@ -35,8 +35,8 @@ struct user_irq_policy {
 
 static GList *interrupts_db = NULL;
 static GList *banned_irqs = NULL;
-static GList *cl_banned_irqs = NULL;
 static GList *cl_banned_modules = NULL;
+GList *cl_banned_irqs = NULL;
 
 #define SYSFS_DIR "/sys"
 #define SYSDEV_DIR "/sys/bus/pci/devices"
