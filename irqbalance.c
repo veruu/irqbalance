@@ -303,8 +303,8 @@ gboolean scan(gpointer data)
 void get_irq_data(struct irq_info *irq, void *data)
 {
 	sprintf(data + strlen(data),
-			"IRQ %d LOAD %lu DIFF %lu ", irq->irq, irq->load,
-			(irq->irq_count - irq->last_irq_count));
+			"IRQ %d LOAD %lu DIFF %lu CLASS %d ", irq->irq, irq->load,
+			(irq->irq_count - irq->last_irq_count), irq->class);
 }
 
 void get_object_stat(struct topo_obj *object, void *data)
