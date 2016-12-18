@@ -236,14 +236,14 @@ static void force_rebalance_irq(struct irq_info *info, void *data __attribute__(
 	info->assigned_obj = NULL;
 }
 
-gboolean handler(gpointer data)
+gboolean handler(gpointer data __attribute__((unused)))
 {
 	keep_going = 0;
 	g_main_loop_quit(main_loop);
 	return TRUE;
 }
 
-gboolean force_rescan(gpointer data)
+gboolean force_rescan(gpointer data __attribute__((unused)))
 {
 	if (cycle_count)
 		need_rescan = 1;
@@ -290,7 +290,7 @@ gboolean scan(gpointer data)
 
 	if (data != &sleep_interval) {
 		data = &sleep_interval;
-		g_timeout_add(sleep_interval, scan, data);
+		g_timeout_add_seconds(sleep_interval, scan, data);
 		return FALSE;
 	}
 
@@ -322,7 +322,7 @@ void get_object_stat(struct topo_obj *object, void *data)
 	}
 }
 
-gboolean sock_handle(gint fd, GIOCondition condition, gpointer user_data)
+gboolean sock_handle(gint fd, GIOCondition condition, gpointer user_data __attribute__((unused)))
 {
 	char buff[100];
 	int sock;
