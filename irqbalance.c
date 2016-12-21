@@ -324,7 +324,7 @@ void get_object_stat(struct topo_obj *object, void *data)
 
 gboolean sock_handle(gint fd, GIOCondition condition, gpointer user_data __attribute__((unused)))
 {
-	char buff[100];
+	char buff[2048];
 	int sock;
 	int recv_size = 0;
 
@@ -334,7 +334,7 @@ gboolean sock_handle(gint fd, GIOCondition condition, gpointer user_data __attri
 			log(TO_ALL, LOG_WARNING, "Connection couldn't be accepted.\n");
 			return TRUE;
 		}
-		if ((recv_size = recv(sock, buff, 100, 0)) < 0) {
+		if ((recv_size = recv(sock, buff, 2048, 0)) < 0) {
 			log(TO_ALL, LOG_WARNING, "Error while receiving data.\n");
 			return TRUE;
 		}
